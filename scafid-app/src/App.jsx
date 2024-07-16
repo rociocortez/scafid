@@ -48,6 +48,11 @@ function App() {
     }
   };
 
+  const handleRedirect = (cuenta) => {
+    const url = `https://www.contraloria.gob.pa/sicowebconsultas/Tramite.aspx?Control=${cuenta}`;
+    window.location.href = url;
+  };
+
   return (
     <div className="App">
       <table>
@@ -56,20 +61,24 @@ function App() {
             <th>Acciones</th>
             <th>Cuenta</th>
             <th>Fecha Entrada Contraloría</th>
-            <th>Seguimiento</th>
-            <th>Ubicación</th>
+            <th>A Favor De</th>
+            <th>Estado</th>
+            <th>Institución</th>
+            <th>Monto</th>
           </tr>
         </thead>
         <tbody>
           {currentRecords.map((record, index) => (
             <tr key={index}>
               <td>
-                <button onClick={() => alert('Navigate to another page')}>...</button>
+                <button onClick={() => handleRedirect(record.cuenta)}>...</button>
               </td>
               <td>{record.cuenta}</td>
               <td>{record.fecha_entrada_contraloria}</td>
-              <td>{record.seguimiento}</td>
-              <td>{record.ubicacion}</td>
+              <td>{record.afavorde}</td>
+              <td>{record.estado}</td>
+              <td>{record.institucion}</td>
+              <td>{record.monto}</td>
             </tr>
           ))}
         </tbody>
